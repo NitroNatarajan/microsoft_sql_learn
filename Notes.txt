@@ -1,3 +1,4 @@
+Basics of Database: 
 1. What is database? 
     It is an organised collection of data that is stored and accessed electronically like a digital filing system. We can able to accessed and managed and update the database easily whenever we want to. 
     Key Features of SQL Database: 
@@ -27,8 +28,36 @@
         commit -> refers to save all the chnages in the current transaction.
         rollback -> undo all the changes made in the current transaction. 
 
+Downloading the Microsoft sql server developer free edition for non production environment -> download exe-> accept and install -> done -> install SSMS(sql server management studio) -> install -> done 
+WINDOWS -> SSMS -> click and open. 
+select server type: Database Engine 
+server name : nitro_natarajan
+authentication: window authentication 
+encryption: optional 
+click connect. 
 
+new query -> write sql 
+select 5 + 5; 
+Note: 
+Database server internal architecture contains many databases, each database contains many tables, each table contavins many records with mant attributes.
 
+- create the database using create database <db_name>
+- drop the database using drop database <name> 
+- use the created database using use <db_name>
+- show databases to see the available databases.
+- select database() -> it tells us in which database we are currently worrking on 
+- Table:
+    - creation/define the table structure where we specify the columns and its types and each columns feaetures 
+    - show tables to verify the created tables 
+    - show columns from table -> table structure or we can do desc -> desc <table_name>
+    - drop table <table_name> -> drop the table exist in the current using database 
+    - delete table <table_name> -> delete the data in the table but not the structure 
+    - insert into <table_name> columns (col1 , col2 , col3 ) values (),(),(); -> this way we insert the multiple records ina single go. 
+    - Datatypes -> int, varchar(30), decimal(5,2), DATAE,TIME.TIMESTAMP, CHAR,BINARY, etc., 
+    - not null -> which is the option we can mention with each column definition for make sure it has to be present otherwise the error comes. 
+    - Alaways use single quotes in sql, colon for separate the sql statement. 
+    - default 'default_value' in a column definition in the table make sure that the value to be added if the value is not passed while inserting the data. 
+    - 
 
 
     
