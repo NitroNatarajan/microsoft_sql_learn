@@ -1,7 +1,34 @@
-What is database? 
-  It is an organised collection of data that is stored and accessed electronically like a digital filing system. We can able to accessed and managed and update the database easily whenever we want to. 
-  Key Features of SQL Database: 
+1. What is database? 
+    It is an organised collection of data that is stored and accessed electronically like a digital filing system. We can able to accessed and managed and update the database easily whenever we want to. 
+    Key Features of SQL Database: 
     Structured storage, like a rows and column format which is not in real how it stores but it seems when it retrieve the data to us in the table form. 
     Consistency: the same type of data stored in the same way across the database. 
     Integrity: It ensures the data is accurate and reliable.
+    Scalability: It can grow in size, handling more data without performance issues. 
+
+2.DBMS- Database mnabagement system? 
+    is a software that allows the users to create,manage, and interact with the database. It act as a intermediatery to the user and database, enable that the data is secure and consistent. 
+
+3. What is Relational database management system? 
+    There are lot of different types of DBMS exist. RDBMS is a database system management system that stores the data in a structured format, using the rows and columns which are organised into the tables. The key feature of this system is that it uses the relationship or links between the tables to manage and query the data efficiently.
+    Features: 
+      1. Tables: Data is stored in tables, where each table consist of rows (records) and columns (attributes)
+      2. Primary Kay: Each table typically has a primary key,unique identifier.
+      3. Foreign Key: Relationship are established using the foreign keys, which are fields in one table that refers to the primary key in the other table. RDBMS system using the SQL to manage and querying the data.
+      4. Normalization: RDBMS often involves the normalization process, which organizes data to minimize redundancy and dependancy. Populat RDBMS: MySQL, PostgreSQL, Microsoft SQL and Oracle Database. 
+4. What is SQL? 
+    SQL is structured query language is a standardized programming language used to manage and manipulate relational databases. It is the primary language used to querying, inserting, updating and deleting, as well as for creatingand modifying the database structure itself. 
+  Key components of SQL: 
+    1. DQL: Data Query Language: used to query the data from the dataabase.DDL commands are select.
+    2. DML: Data Manipulation Lang: used to insert,update,delete the data. DDL commands are insert, drop, delete update 
+    3. DDL: Data Definition Lnag: used to define or alter the structure of the database such as creation, altering, or dropping tables. 
+    4. DCL: Data Control Lang: used to control the access to the data like granting or revoke the permission.
+    5. Transaction Control Lang: used to manage the transaction in the database, ensuring the data integrity. 
+        commit -> refers to save all the chnages in the current transaction.
+        rollback -> undo all the changes made in the current transaction. 
+
+
+
+
+
     
