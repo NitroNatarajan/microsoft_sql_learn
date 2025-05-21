@@ -57,7 +57,97 @@ Database server internal architecture contains many databases, each database con
     - not null -> which is the option we can mention with each column definition for make sure it has to be present otherwise the error comes. 
     - Alaways use single quotes in sql, colon for separate the sql statement. 
     - default 'default_value' in a column definition in the table make sure that the value to be added if the value is not passed while inserting the data. 
-    - 
+    - Primary Key -> which is specified to the column that act as unique to identify each entries or row of the table. We can add the primary key term in the column definition or primary key(column_name) in the end of the columns list in the table definition.Each table may have only one primary key column not more than one. But it may have more than one foreign key column. Primary key setting will include the power of setting the NOT NULL. 
+    - auto_increment -> which is used along with the primary key so that it get autoatically incremented without explicitly telling to step up one while inserting the entries.
+
+- CRUD Exercise
+    - create a database, use the database and create a table with the definition and insert the entries into the table and retrieve the data by select statement. 
+    - select * from cats -> it displays all the columns with all the rows of data from the cats table.
+    - select name from cats -> it extract the name column from cats table. 
+    - select name, age from cats -> it extract the name and age column from the cats.
+    - Delete from cats -> it delete all the entries.
+    - Delete from cats where name = "Nitro" -> it delete all the cats which has named Nitro. 
+    - Update <tb_name> set name = "Nitro", age=12, breed = "Labrador" where name = "Natarajan" -> it means update or set the name to something in the table where name was "Natarajan". we can set multiple values in one go. 
+    - WHERE Clause -> which is used to filter the entries based on the single/multiple condition.
+    - ORDER BY col1 asc, col2 dec -> we can sort the table in an ascending/descending order of one or more column specification.  
+Note: Always be careful while update the data in the database, just precheck whether we are selecting the right rows before update the data in the given table. 
 
 
+- String Function generally we use in the select statement 
+    - conact() -> concat(firstname, ' ' , lastname) 
+    - concat_ws('-',x,y,z) -> x-y-z 
+    - substring("string", start index, end index or from start index) or substr()
+    - combining the multiple string function concat(substr(),'!!!')
+    - replace(string, what needs to replace, what need to be replaced by)
+    - reverse(string)
+    - char_length(string)
+    - upper(string) & lower(string)
+    - insert(string, start_index to insert, how many char to replace, what is the charater to replace with)
+    - left(string, how many char from left to be retrieved)
+    - right(string, how many char from right to be retrieved)
+    - repeat(string, times count)
+    - trim(string) -> remove the leading and trailing space 
+
+- Refining Selection 
+    - Distinct keyword -> retrieve the unique results from duplicates 
+    - order by -> to sort the result by name, age, salary, quntity, id in ascending or descending order. 
+    - order by <col1>, <col2> -> it should come after the from clause. order by 2 means order the result by the second column. 
+    - limit <number> -> we can control the no of records we can get back from the select statement. 
+    - like '%nitro%' -> any specified column has any match with the specified pattern.
+    - GROUP By <col1> , <col2> -> grouping the table based on the values of different columns so that we can calculate the aggregate result of numerical column based on grouped categories separately.
+
+- Aggregate function 
+    - count() , avg() , sum(), min(), max()
+
+- Datatypes:
+    - varchar(max number of char limit), int are most widely used datatype in the database table data entries. 
+    - But to store decimal,currency,volume, date,time we have different datatypes in our hand to use in the sql database.
+    - char(10) ->we use this to store fixed character length datatype
+    - varchar() ->we use this to store variable values in string form
+    - for whole number storing, we can use the tinyint,smallint,mediumint,int,bigint -> each support the different range of values that we can able to store 
+    - In general, we only work with signed integer, rearely we use unsigned. To make the int unsigned, we can add constraint in the table definition like tinyint unsigned.
+    - To store the decimal values, we can use decimal, float, double datatype also. 
+    - Decimal-> to store the more decimal values. In int datatype, if we store the decimal values, it take the integer part and skip the decimal values after the dot.
+    - But in decimal datatype we can store precise decimal values as well. In datatype defining, we can meantion that decimal(10,2)-> in total ten digits, two decimal places are allowed. 
+    - Float takes upto 4 bytes so its precise upto 7 digits and the double takes upto 8 bytes so it precise upto 15 bytes. 
+    - Date and time store we can use date,time,datetime,timestamp. date -> [yyyy-mm-dd] , time -> [hh:mm:ss] dataetime -> [yyyy-mm-dd][hh-mm-ss] in this way it has to be mentioned while store.
+    - while inserting the values into table, for the data,time,datetime colun,we can feed the structure values in singe quotes. 
+    - we can use the datetime function to get the current data and time like curdate(),curtime(),now() -> return the current instance date or time -> 
+    - Date function, Time function, Datetime function, Date math,timemath,datetime math functions. Refer the sql Manual to learn the available function to work on those information.
+
+Operators: 
+    - = ->equal to operator used in the where class, set the vaues in the update statment 
+    - != -> not equal to means to check the not equality check 
+    - Like '%nitro%' -> pattern matching 
+    - NOT LIKE '%LIKE%' -> to found the non pattern matching 
+    - > or >= or < or <= -> mention the range condition in the where clause 
+    - AND -> Logical AND -> to combine multiple condition in the where clause. It return true when all the conndtion are true, otherwise false. 
+    - OR -> Logcal OR -> To combine the conditions and it return true when one condition meets
+    - IN operator -> it is used when we have a list of values to be checked. Used in the where clause. 'NOT IN' -> also used when required.
+    - BETWEEN -> this is used to mean the ranges of values in the condition in the where clause. not between also possible here.
+    - IS NULL -> Used to check the null values existance 
+    - IS NOT NULL -> used to check the not null existance
+
+CASE statement in the select statement to be used to display new derived column using the existing column. 
+select 
+case 
+    when <condition> then action1,
+    when <condition2> action2,
+    else <action>
+end as <newer_col_name> from table_name. 
+
+Constraints: 
+In the table definition,we can use the constraints such as auto_increment, not null, primary key. Like the same way we can have many more such as unique.
+    - UNIQUE -> allows the unique values like primary but not the primary key 
+    - check(<condition> whish return true or false) -> check constarint we can add in the column definition in the table definition. like check(age>18), check(reverse(word)=word) 
+    - Multi column constraint 
     
+Alter Table: 
+    - we can add/remove/rename,change datatype to the column, add/remove the cinstraints to the column. All the table altering commands exist in the alter statements. 
+    - ALTER TABLE COMPANIES ADD COLUMN CITY VARCHAR(90) -> THIS ADD THE COLUMN IN THE TABLE ->See the hand-written notes 
+    - ALTER TABLE COMPANIES DROP COLUN employee_count; -> once dropped,it cant be restores then.
+    - Renaming column and Renaming table 
+        - rename table companies to xyz -> here rename the table by using the rename statements.
+        - ALTER TABLE COMPANIES RENAME TO SUPPLIERS -> This way also works the same.
+        - alter table companies rename column <M/F> TO <GENDER> -> Thia way we can rename the column of the table. 
+        - we can add constraint to the table and drop the constraint as well. 
