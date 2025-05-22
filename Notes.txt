@@ -95,6 +95,8 @@ Note: Always be careful while update the data in the database, just precheck whe
     - limit <number> -> we can control the no of records we can get back from the select statement. 
     - like '%nitro%' -> any specified column has any match with the specified pattern.
     - GROUP By <col1> , <col2> -> grouping the table based on the values of different columns so that we can calculate the aggregate result of numerical column based on grouped categories separately.
+    - 'HAVING' -> If in case we wanna filter the records from the output of using groupy by, there we can use the having clause after the group by statement. 
+    - 'WHERE' vs 'HAVING' -> both are used for filtering but on different levels of data. 'where' is used to row's filtering the raw table row,non-aggregated or non-grouped data  whereas 'having' used in the grouped data for filtering the agrregated grouped data. 
 
 - Aggregate function 
     - count() , avg() , sum(), min(), max()
@@ -151,3 +153,30 @@ Alter Table:
         - ALTER TABLE COMPANIES RENAME TO SUPPLIERS -> This way also works the same.
         - alter table companies rename column <M/F> TO <GENDER> -> Thia way we can rename the column of the table. 
         - we can add constraint to the table and drop the constraint as well. 
+
+
+Relationships and joins 
+    - lets learn how the relationship are built between the tables and and the tables are related with each others. 
+    - In the real world all the data we have seen are related in some way eg: photos, likes,comments, reviews, relationships, tags, followers etcs are related. 
+    - Real world data are messy and interrelated eg: blogpost site has users, post, comments,tags, ads etc., 
+    - Take an book selling company like amazon -> authors, versions, customers, orders, reviews, genres these many tables to manage this shop. 
+    - In general, we used to check out the schema diagram how the tables are related with each other. 
+    - Relationship could be fall into three different categories such as 1:1 , 1:many, many:many relationship. 
+    - 1:1 means that the relationship between customer and customer_details, here each row in the customer is associated with one row of the customer_details table. 
+    - 1:MANY relationship, eg:like a relationship between movie and reviews table, each movie can have a many reviews but each review points the single movie only. widely used relationship in the schema design. 
+    - MANY:MANY relationship is like author and books table. each author many have written many books, in other way each books may be written by many authors together. 
+    - we can build a relationship between the table using the foreign key constraint. Each table may have a primary key which can be used in the other table as a refrences. 
+    - Foreign key (customer_id) references customers(id) -> it create the relationship between the orders table and customer table. Each table can have ne primary key, having manier foreign key. 
+    - CROSS Join: Which is a dumb join meaningless join in fact, because it join all the possible combination of each table rows. 
+    - Eg: Cross join select * from customers, orders; -> which join two tables and return the all the possible combinaytion which is not really useful in fact. 
+    - Inner Join: It select all the records from A and B where the condition is met. Intersections or matching records of both tables. Its intuitive join among all the join. 
+    - select * from customers inner join orders on customers.id = orders.customer_id -> it join the intersection/overlap rows. 
+    - Left Join: this join select everything from A, along with the matching records from B. 
+    - Right Join: this join select everything from B, along with the matching records from A. 
+    - 'ON DELETE CASCADE' -> this constraint allow us to delete the customer even this customer is refrenced in some other table. But the deleted customer order details also dropped when we delete the customer from the customer table.
+
+    - Many:Many Relationship: 
+        - Eg: if we have reviewer who review the series and series alone wth basic info, then we make new table called review table which has the foreign keys which references the reviewer and series. 
+    - Views: 
+    - updateable views
+    - 
