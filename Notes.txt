@@ -95,8 +95,10 @@ Note: Always be careful while update the data in the database, just precheck whe
     - limit <number> -> we can control the no of records we can get back from the select statement. 
     - like '%nitro%' -> any specified column has any match with the specified pattern.
     - GROUP By <col1> , <col2> -> grouping the table based on the values of different columns so that we can calculate the aggregate result of numerical column based on grouped categories separately.
-    - 'HAVING' -> If in case we wanna filter the records from the output of using groupy by, there we can use the having clause after the group by statement. 
+    - 'HAVING' -> If in case we wanna filter the records from the output of using groupy by, there we can use the having clause after the group by statement. To filter the grouped query result, we can use the having statement.  
     - 'WHERE' vs 'HAVING' -> both are used for filtering but on different levels of data. 'where' is used to row's filtering the raw table row,non-aggregated or non-grouped data  whereas 'having' used in the grouped data for filtering the agrregated grouped data. 
+    - WITH ROLLUP -> is also used along with the group by clause -> select title, count(rating) from full_reviews group by title with rollup -> gives the aggregate value in the last row.
+    - Rollup works on group by with any level and it is super aggregator 
 
 - Aggregate function 
     - count() , avg() , sum(), min(), max()
@@ -175,8 +177,37 @@ Relationships and joins
     - Right Join: this join select everything from B, along with the matching records from A. 
     - 'ON DELETE CASCADE' -> this constraint allow us to delete the customer even this customer is refrenced in some other table. But the deleted customer order details also dropped when we delete the customer from the customer table.
 
-    - Many:Many Relationship: 
-        - Eg: if we have reviewer who review the series and series alone wth basic info, then we make new table called review table which has the foreign keys which references the reviewer and series. 
-    - Views: 
-    - updateable views
-    - 
+    - Many:Many Relationship:
+        - Generally, we build this relationship using more foreign keys with the table. More obvious it is useful in various scenarious. 
+        - Eg: if we have reviewer who review the series and series alone wth basic info, then we make new table called review table which has the foreign keys which references the reviewer and series.
+        - We can build te relationship and query the data after joining different tables. While building this relationship we many add many foreign key constraint and on delete cascade in the table definition/schema. 
+    - Views:
+        - Views are some query we named and store. We don't have to write the query over and over. A view acts as a virtual table. When we call/invoke the stored named view, it produces the result. 
+        - It seems like a table but its not. We use this views for analysis. View are treated as true table but it is not in real. The syntax for creating the view. 
+        - create views <view_name> as <complicated query>
+        - Eg:       create view full_review as 
+                    select title, genre, released_year,rating, first_name, last_name from reviews 
+                    inner join reviewers on reviewers.id = reviews.reviewer_id 
+                    inner join series on series.id = reviews.series_id;
+        - Now we can select * from full_review; -> it return the table, but we can't able to update/edit the table. Just we can use it for an analysis and extract insights from the data. 
+        - we can't delete anything from/inserting into the view table, because it is not a true table just a virtual table. 
+        - Ofcourse we can do some updates until the view underlying query matches some contraints like non join query, no group by etc.,
+        - Replacing/Altering View: Just -> create or replace view ordered_series as select * from series order by title desc; This way we can able to replace the existing view with different underlying/update over the query.
+        - To alter the existing view -> alter view <view_name> as select * from series order by released_year desc; 
+        - To drop the view we can just simply -> drop view <view_name>
+    - SQL Modes
+        - select @@global.sql_mode -> shows the settings on the global window of sql 
+        - select @@session.sql_mode -> shows the session sql settings. list of modes in quotes> eg: set global sql_mode 'ONLY_FIULL_GROUP_BY, STRICT_TRANS_TABLES,NO_ZER_IN_DATE' -> these setting will be in active then from defaults. 
+        - we can set the session settings by ->  set global sql_mode = <provide the list of modes in quotes>
+    - Windows Functions -> which create the computation and return the result along with all the rows without boil down to single row as group by does. 
+        - aggregate function with over()
+        - over() -> create the empty window frame which contains all the rows of the table. 
+        - over(partition by some_column) -> create the window frame with department wise 
+        - over(partition by department order by total_amount) -> we can use the order by inside theover clause, so that we can get the roll_total amount for each department. 
+        - rank with over(order by salary), dense_rank over(order by salary), roll_number over(order by salary) we can use to compute the rank and roll number.
+        - ntile -> we can order the rows and we can find the salaries quartile range 
+        - lead and lag -> we can use this to compare the salaries with next salary and previous salary when we ordered the salary in asc or desc and find the difference of the salary from the next or previous salaries easily.
+        - We can use other window functions also. ROW BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING, ROW BETWEEN N PRECEEDING AND N FOLLOWING, CURRENT ROW AND N PRECEEDING, CURRENT ROW AND UNBOUNDED FOLLOWING, etc., 
+
+    - Lets Create the Instagram DB SCHEMA: 
+            
