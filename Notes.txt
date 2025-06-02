@@ -74,7 +74,7 @@ Note: Always be careful while update the data in the database, just precheck whe
 
 
 - String Function generally we use in the select statement 
-    - conact() -> concat(firstname, ' ' , lastname) 
+    - concat() -> concat(firstname, ' ' , lastname) 
     - concat_ws('-',x,y,z) -> x-y-z 
     - substring("string", start index, end index or from start index) or substr()
     - combining the multiple string function concat(substr(),'!!!')
