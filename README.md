@@ -47,4 +47,17 @@
 - Primary Key
 - Foreign Key
 - SQL order of execution
+- Window Function
+  - RANK , ROLL_NUMBER, DENSE_RANK with Over() Clause contains partitoon by and order by. 
+  - LEAD, LAG FUNCTION with Over() Clause contains partitoon by and order by.  
+  - FIRST_VALUE() , LAST_VALUE() with Over() Clause contains partitoon by and order by.  
+  - ISNULL() , COALESCE() -> To handle null values in th column of the table.
+- CTE: COMMON TABLE EXPRESSION
+- Recursive CTE
+- Stored Procedure
+- Views
+- Indexes
+    - Clustered Indexes
+    - Non-Clustered Indexes
+- SQL Problems  
  
